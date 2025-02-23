@@ -3,8 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}</title>
-    {% include ".partials/links_header.html" %}
+    <title>{{ title }}</title>
+    {% include "_partials/links_header.html" %}
   </head>
-  <body></body>
+  <body>
+    {% block header %}
+      {% include "components/_header.html" %}
+    {% endblock header %}
+    {% block content %}
+    {% endblock content %}
+    {% block footer %}
+      {% include "components/_footer.html" %}
+    {% endblock footer %}
+  </body>
+  {% include "_partials/links_footer.html" %}
 </html>

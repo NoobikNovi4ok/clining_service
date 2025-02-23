@@ -1,0 +1,119 @@
+.text-balance {
+  text-wrap: balance;
+}
+
+.link-no-underline {
+  text-decoration: none;
+}
+
+@media (max-width: 991px) {
+  .menu-links {
+    display: none !important;
+  }
+}
+
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-nav .nav-item {
+  margin-bottom: 1rem;
+}
+
+.social-icon-container {
+  display: flex; /* Создаем гибкую верстку */
+  justify-content: center; /* Центрируем содержимое по горизонтали */
+  align-items: center; /* Центрируем содержимое по вертикали */
+  height: 80px; /* Устанавливаем высоту div */
+  border-radius: 50%; /* Создаем круглый фон */
+  background-color: #f8f9fa; /* Светло-серый фон */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Добавляем плавные переходы */
+  cursor: pointer; /* Изменяем курсор на указатель */
+}
+
+.social-icon-container:hover {
+  background-color: #e9ecef; /* Темнее серый фон при наведении */
+  transform: scale(1.1); /* Масштабируем div при наведении */
+}
+
+.social-icon {
+  color: inherit; /* Наследуем цвет от родителя */
+  text-decoration: none; /* Убираем подчеркивание ссылки */
+  display: flex; /* Создаем гибкую верстку для иконки */
+  justify-content: center; /* Центрируем иконку по горизонтали */
+  align-items: center; /* Центрируем иконку по вертикали */
+  width: 100%; /* Иконка занимает всю ширину div */
+  height: 100%; /* Иконка занимает всю высоту div */
+}
+
+.social-icon i {
+  font-size: 2rem; /* Размер иконки */
+  color: #333; /* Цвет иконки */
+  transition: color 0.3s ease; /* Плавный переход цвета */
+}
+
+.social-icon:hover i {
+  color: #ff6f61; /* Яркий цвет иконки при наведении (можно изменить) */
+}
+
+.social-icon-container {
+  display: flex; /* Создаем гибкую верстку */
+  justify-content: center; /* Центрируем содержимое по горизонтали */
+  align-items: center; /* Центрируем содержимое по вертикали */
+  height: 80px; /* Устанавливаем высоту div */
+  border-radius: 50%; /* Создаем круглый фон */
+  background-color: #f8f9fa; /* Светло-серый фон */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Добавляем плавные переходы */
+  cursor: pointer; /* Изменяем курсор на указатель */
+}
+
+.social-icon-container:hover {
+  background-color: #e9ecef; /* Темнее серый фон при наведении */
+  transform: scale(1.1); /* Масштабируем div при наведении */
+}
+
+.social-icon {
+  color: inherit; /* Наследуем цвет от родителя */
+  text-decoration: none; /* Убираем подчеркивание ссылки */
+  display: flex; /* Создаем гибкую верстку для иконки */
+  justify-content: center; /* Центрируем иконку по горизонтали */
+  align-items: center; /* Центрируем иконку по вертикали */
+  width: 100%; /* Иконка занимает всю ширину div */
+  height: 100%; /* Иконка занимает всю высоту div */
+}
+
+.social-icon i {
+  font-size: 2rem; /* Размер иконки */
+  color: #333; /* Цвет иконки */
+  transition: color 0.3s ease; /* Плавный переход цвета */
+}
+
+.social-icon:hover .fa-youtube {
+  color: #ff6f61;
+}
+
+.social-icon:hover .fa-vk {
+  color: #006eff;
+}
+
+.social-icon:hover .fa-telegram {
+  color: #0088cc;
+}
