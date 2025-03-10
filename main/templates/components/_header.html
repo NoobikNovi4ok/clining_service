@@ -68,7 +68,8 @@
                     <p class="text-white fw-bold custom-link mb-1">Выйти</p>
                 </a>
             {% else %}
-                <a href="{% url "user:login" %}" class="btn btn-outline-warning w-25">Войти в аккаунт</a>
+                <a href="" class="btn btn-outline-warning w-25">Авторизоваться</a>
+                <a href="{% url "user:register" %}" class="btn btn-outline-warning w-25">Зарегистрироваться</a>
             {% endif %}
         </div>
     </div>
@@ -115,7 +116,8 @@
                 <p class="text-white fw-bold custom-link mb-1">Выйти</p>
             </a>
         {% else %}
-            <a href="{% url "user:login" %}" class="btn btn-outline-warning w-100">Войти в аккаунт</a>
+            <a href="" class="btn btn-outline-warning w-25">Авторизоваться</a>
+            <a href="{% url "user:register" %}" class="btn btn-outline-warning w-25">Зарегистрироваться</a>
         {% endif %}
     </div>
 </div>

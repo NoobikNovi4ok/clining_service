@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Зарегистрироваться</button>
-    </form>
+    <div class="container col-11 col-sm-10 col-md-8 col-lg-6 col-xl-3 border border-2 rounded border-dark mt-2 p-xl-3 p-2">
+        <h2 class="text-center">Регистрация</h2>
+        <form method="post" class="text-center">
+            {% csrf_token %}
+            <div>
+                {% for field in form %}
+                    <div class="form-floating">
+                        {{ field }}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <!-- Вывод ошибок для конкретного поля -->
+                        {% if field.errors %}<div class="text-danger small">{{ field.errors|striptags }}</div>{% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% comment %}{% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %} {% endcomment %}
+            <button class="btn btn-success" type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
 {% endblock content %}
