@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="container col-11 col-sm-10 col-md-8 col-lg-6 col-xl-3 border border-2 rounded border-dark mt-2 p-xl-3 p-2">
-        <h2 class="text-center">Регистрация</h2>
+        <h2 class="text-center pb-2">Регистрация</h2>
         <form method="post" class="text-center">
             {% csrf_token %}
             <div>
@@ -15,7 +15,10 @@
                 {% endfor %}
             </div>
             {% comment %}{% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %} {% endcomment %}
-            <button class="btn btn-success" type="submit">Зарегистрироваться</button>
+            <div class="container row d-flex flex-wrap pt-2">
+                <button class="btn btn-success w-75 mx-auto" type="submit">Зарегистрироваться</button>
+                <a href="{% url "user:login" %}" class="link-primary link-no-underline pt-2">Авторизоваться</a>
+            </div>
         </form>
     </div>
 {% endblock content %}

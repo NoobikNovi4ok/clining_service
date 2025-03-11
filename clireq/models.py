@@ -3,22 +3,36 @@ from users.models import CustomUser
 
 
 class ServiceRequest(models.Model):
-    STATUS_CHOICES = [
-        ("NEW", "Новая заявка"),
-        ("IN_PROGRESS", "В работе"),
-        ("COMPLETED", "Выполнено"),
-        ("CANCELLED", "Отменено"),
+    SERVICE_CHOICES = [
+        ("general_cleaning", "Общий клининг"),
+        ("deep_cleaning", "Генеральная уборка"),
+        ("post_construction", "Послестроительная уборка"),
+        ("carpet_cleaning", "Химчистка ковров и мебели"),
     ]
 
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    address = models.CharField(max_length=255)
-    contact_phone = models.CharField(max_length=15)
-    service_type = models.CharField(max_length=255)
-    custom_service = models.TextField(blank=True)
-    preferred_payment = models.CharField(max_length=50)
-    desired_date_time = models.DateTimeField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="NEW")
-    cancellation_reason = models.TextField(blank=True)
+    PAYMENT_CHOICES = [
+        ("cash", "Наличные"),
+        ("card", "Банковская карта"),
+    ]
+
+    address = models.CharField(max_length=255, verbose_name="Адрес")
+    phone = models.CharField(max_length=18, verbose_name="Телефон")
+    service_type = models.CharField(
+        max_length=50,
+        choices=SERVICE_CHOICES,
+        verbose_name="Вид услуги",
+        blank=True,
+        null=True,
+    )
+    other_service = models.TextField(blank=True, null=True, verbose_name="Иная услуга")
+    preferred_datetime = models.DateTimeField(verbose_name="Желаемая дата и время")
+    payment_method = models.CharField(
+        max_length=4, choices=PAYMENT_CHOICES, verbose_name="Тип оплаты"
+    )
 
     def __str__(self):
-        return f"Заявка {self.id} от {self.user.username}"
+        return f"Заявка от {self.phone} на {self.preferred_datetime}"
+
+    class Meta:
+        verbose_name = "Заявка"
+        verbose_name_plural = "Заявки"

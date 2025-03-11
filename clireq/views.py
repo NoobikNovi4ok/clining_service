@@ -10,13 +10,11 @@ def create_request(request):
     if request.method == "POST":
         form = ServiceRequestForm(request.POST)
         if form.is_valid():
-            request_instance = form.save(commit=False)
-            request_instance.user = request.user
-            request_instance.save()
+            form.save()
             return redirect("request_history")
     else:
         form = ServiceRequestForm()
-    return render(request, "main/create_request.html", {"form": form})
+    return render(request, "clireq/create_request.html", {"form": form})
 
 
 @login_required

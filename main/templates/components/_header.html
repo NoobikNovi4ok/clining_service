@@ -45,10 +45,15 @@
         </div>
         <div class="nav col-lg-7 col-md-12 col-sm-12 justify-content-evenly menu-links">
             {% if request.user.is_authenticated %}
+                <a class="d-block text-center align-items-center custom-header-link btn btn-outline-success pb-1"
+                   href="{% url "clireq:request_history" %}">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <p class="text-white fw-bold custom-link mb-1">Создание заявки</p>
+                </a>
                 <a class="d-block text-center align-items-center custom-header-link btn btn-outline-primary pb-1"
-                   href="">
+                   href="{% url "clireq:create_request" %}">
                     <i class="fa-solid fa-pencil"></i>
-                    <p class="text-white fw-bold custom-link mb-1">Создать заявку</p>
+                    <p class="text-white fw-bold custom-link mb-1">Формирование заявки</p>
                 </a>
                 {% if request.user.is_admin %}
                     <a class="d-block text-center align-items-center custom-header-link btn btn-outline-warning pb-1"
@@ -57,19 +62,14 @@
                         <p class="text-white fw-bold custom-link mb-1">Админ панель</p>
                     </a>
                 {% endif %}
-                <a class="d-block text-center align-items-center custom-header-link btn btn-outline-success pb-1"
-                   href="">
-                    <i class="fa-solid fa-user"></i>
-                    <p class="text-white fw-bold custom-link mb-1">Профиль</p>
-                </a>
                 <a class="d-block text-center align-items-center custom-header-link btn btn-outline-danger pb-1"
                    href="{% url "user:logout" %}">
                     <i class="fa-solid fa-door-open"></i>
                     <p class="text-white fw-bold custom-link mb-1">Выйти</p>
                 </a>
             {% else %}
-                <a href="" class="btn btn-outline-warning w-25">Авторизоваться</a>
-                <a href="{% url "user:register" %}" class="btn btn-outline-warning w-25">Зарегистрироваться</a>
+                <a href="{% url "user:login" %}" class="btn btn-outline-warning btn-custom-users">Авторизоваться</a>
+                <a href="{% url "user:register" %}" class="btn btn-outline-warning btn-custom-users">Зарегистрироваться</a>
             {% endif %}
         </div>
     </div>
@@ -91,13 +91,18 @@
 </div>
 <!-- Мобильное меню -->
 <div class="collapse navbar-collapse d-lg-none" id="navbarNav">
-    <div class="navbar-nav flex-column">
+    <div class="navbar-nav flex-column navbario_mobile">
         {% if request.user.is_authenticated %}
             <a class="nav-item nav-link text-center align-items-center custom-header-link btn btn-outline-primary pb-1"
                href="">
                 <i class="fa-solid fa-pencil"></i>
-                <p class="text-white fw-bold custom-link mb-1">Создать заявку</p>
+                <p class="text-white fw-bold custom-link mb-1">Создание заявки</p>
             </a>
+            <a class="nav-item nav-link text-center align-items-center custom-header-link btn btn-outline-primary pb-1"
+            href="">
+             <i class="fa-solid fa-pencil"></i>
+             <p class="text-white fw-bold custom-link mb-1">Формирование заявки</p>
+         </a>
             {% if request.user.is_admin %}
                 <a class="nav-item nav-link text-center align-items-center custom-header-link btn btn-outline-warning pb-1"
                    href="{% url "admin:index" %}">
@@ -105,19 +110,14 @@
                     <p class="text-white fw-bold custom-link mb-1">Админ панель</p>
                 </a>
             {% endif %}
-            <a class="nav-item nav-link text-center align-items-center custom-header-link btn btn-outline-success pb-1"
-               href="">
-                <i class="fa-solid fa-user"></i>
-                <p class="text-white fw-bold custom-link mb-1">Профиль</p>
-            </a>
             <a class="nav-item nav-link text-center align-items-center custom-header-link btn btn-outline-danger pb-1"
                href="">
                 <i class="fa-solid fa-door-open"></i>
                 <p class="text-white fw-bold custom-link mb-1">Выйти</p>
             </a>
         {% else %}
-            <a href="" class="btn btn-outline-warning w-25">Авторизоваться</a>
-            <a href="{% url "user:register" %}" class="btn btn-outline-warning w-25">Зарегистрироваться</a>
+            <a href="{% url "user:login" %}" class="btn btn-outline-warning btn-custom-users">Авторизоваться</a>
+            <a href="{% url "user:register" %}" class="btn btn-outline-warning btn-custom-users">Зарегистрироваться</a>
         {% endif %}
     </div>
 </div>

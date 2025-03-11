@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import RedirectView
-from users.forms import RegistrationForm
+from users.forms import RegistrationForm, UserLoginForm
 from django.contrib import messages, auth
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -20,29 +20,32 @@ def register(request):
             return redirect("home")
     else:
         form = RegistrationForm()
-    return render(request, "users/register.html", {"form": form})
+    return render(
+        request, "users/register.html", {"form": form, "title": "Регистрация"}
+    )
 
 
-# class UserLoginView(LoginView):
-#     template_name = "users/login.html"
-#     form_class = UserLoginForm
-#     success_url = reverse_lazy("home")
-#     redirect_authenticated_user = True
+class UserLoginView(LoginView):
+    template_name = "users/login.html"
+    form_class = UserLoginForm
+    success_url = reverse_lazy("home")
+    redirect_authenticated_user = True
 
-#     def form_valid(self, form):
-#         user = form.get_user()
-#         login(self.request, user)
-#         messages.success(self.request, f"{user}, вы успешно вошли в аккаунт")
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        user = form.get_user()
+        login(self.request, user)
+        messages.success(self.request, f"{user}, вы успешно вошли в аккаунт")
+        return super().form_valid(form)
 
-#     def get_success_url(self):
-#         return self.success_url
+    def get_success_url(self):
+        return self.success_url
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Авторизация"
+        return context
 
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["title"] = "Авторизация"
-#         return context
 class LogoutView(RedirectView):  # С выходом из аккаунта на главную страницу
     url = reverse_lazy("home")
 

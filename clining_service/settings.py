@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "bootstrap5",
     "main",
-    "users",
+    "users.apps.UsersConfig",
     "clireq.apps.ClireqConfig",
 ]
 

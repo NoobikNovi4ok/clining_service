@@ -1,1 +1,81 @@
 {% extends "base.html" %}
+{% block content %}
+<div class="container col-11 col-sm-10 col-md-8 col-lg-6 col-xl-3 border border-2 rounded border-dark mt-2 p-xl-3 p-2">
+    <h2 class="text-center pb-2">Формирование заявки</h2>
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        <div>
+            {% for field in form %}
+                <!-- Исключаем поле other_service из цикла -->
+                {% if field.name != "other_service" %}
+                    <div class="mb-2">
+                        {% if field.name == "payment_method" %}
+                            <!-- Отдельная обработка для поля выбора оплаты -->
+                            <label class="form-label">{{ field.label }}</label>
+                            <div class="w-75 mx-auto">
+                                {% for radio in field %}
+                                    <div class="form-check form-switch">
+                                        {{ radio.tag }}
+                                        <label class="form-check-label">{{ radio.choice_label }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="form-floating">
+                                {{ field }}
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            </div>
+                        {% endif %}
+                        <!-- Вывод ошибок для конкретного поля -->
+                        {% if field.errors %}
+                            <div class="text-danger small">{{ field.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Отдельный блок для поля other_service -->
+            <div class="text-center" id="other_service_container" style="display: none;" class="mb-3">
+                <label for="id_other_service" class="form-label">{{ form.other_service.label }}</label>
+                {{ form.other_service }}
+                <!-- Вывод ошибок для поля other_service -->
+                {% if form.other_service.errors %}
+                    <div class="text-danger small">{{ form.other_service.errors|striptags }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Вывод общих ошибок формы -->
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="container row d-flex flex-wrap pt-2">
+            <button class="btn btn-success w-75 mx-auto" type="submit">Отправить заявку</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const isOtherServiceCheckbox = document.getElementById("id_is_other_service");
+        const otherServiceContainer = document.getElementById("other_service_container");
+        const other = document.getElementById("id_other_service");
+
+        // Проверяем, что элементы найдены
+        if (isOtherServiceCheckbox && otherServiceContainer) {
+            isOtherServiceCheckbox.addEventListener("change", function () {
+                if (this.checked) {
+                    otherServiceContainer.style.display = "block";
+                    other.style.display = "block";
+                } else {
+                    otherServiceContainer.style.display = "none";
+                    other.style.display = "none"
+                }
+            });
+        } else {
+            console.error("Элементы 'id_is_other_service' или 'other_service_container' не найдены.");
+        }
+    });
+</script>
+{% endblock content %}
