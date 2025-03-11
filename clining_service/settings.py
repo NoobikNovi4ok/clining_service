@@ -141,4 +141,7 @@ MESSAGE_TAGS = {
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Для перенаправления на авторизацию с помощью декоратора login_required
+LOGIN_URL = "user:login"
+
 AUTH_USER_MODEL = "users.CustomUser"

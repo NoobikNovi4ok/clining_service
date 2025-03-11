@@ -1,1 +1,62 @@
 {% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="slider my-2">
+            <div>
+                <h2 class="slider-text col-lg-12 col-md-12 col-sm-12"
+                    style="text-align:end;
+                           left:45%">
+                    Портал услуг открылся
+                    <br />
+                    Скорее оставляйте заявки
+                </h2>
+                <a class="slider-button btn orange_without"
+                   style="cursor:default;
+                          left:85%"
+                   id="buy_1"
+                   data-href="{% url 'clireq:create_request' %}">Оформить заявку</a>
+                <img src="{% static 'style/image/channels4_profile.jpg' %}"
+                     class="slider-img this-is-1"
+                     alt="Магазин открылся" />
+            </div>
+            <div>
+                <h2 class="slider-text col-lg-12 col-md-12 col-sm-12"
+                    style="text-align:start;
+                           left:65%">Зайти в аккаунт</h2>
+                <a class="slider-button btn orange_without"
+                   style="text-align:start;
+                          left:25%;
+                          cursor:default"
+                   id="buy_2"
+                   data-href=" {% url 'user:login' %}">Авторизоваться</a>
+                <img src="{% static 'style/image/doc_2024-11-10_23-15-56.gif' %}"
+                     class="slider-img this-is-2"
+                     alt="Авторизоваться" />
+            </div>
+            <div>
+                <h2 class="slider-text col-lg-12 col-md-12 col-sm-12"
+                    style="text-align:end;
+                           left:45%">Желаете просмотреть свои заявки?</h2>
+                <a class="slider-button btn orange_without"
+                   style="cursor:default;
+                          left:85%"
+                   id="buy_3"
+                   data-href="{% url 'clireq:request_history' %}">Просмотреть</a>
+                <img src="{% static 'style/image/photo_2024-10-27_03-02-48.jpg' %}"
+                     class="slider-img this-is-3"
+                     alt="Вопросы" />
+            </div>
+            <div>
+                <img class="prev controlls slider-controlls"
+                     src="{% static 'style/image/prev_icon.png' %}"
+                     alt="Перелистнуть влево" />
+            </div>
+            <div>
+                <img class="next controlls slider-controlls"
+                     src="{% static 'style/image/next_icon.png' %}"
+                     alt="Перелистнуть вправо" />
+            </div>
+        </div>
+    </div>
+{% endblock content %}

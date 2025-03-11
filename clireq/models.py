@@ -14,7 +14,12 @@ class ServiceRequest(models.Model):
         ("cash", "Наличные"),
         ("card", "Банковская карта"),
     ]
-
+    user = models.ForeignKey(
+        to=CustomUser,
+        on_delete=models.CASCADE,
+        related_name="service_requests",
+        verbose_name="Пользователь",
+    )
     address = models.CharField(max_length=255, verbose_name="Адрес")
     phone = models.CharField(max_length=18, verbose_name="Телефон")
     service_type = models.CharField(
@@ -31,8 +36,9 @@ class ServiceRequest(models.Model):
     )
 
     def __str__(self):
-        return f"Заявка от {self.phone} на {self.preferred_datetime}"
+        return f"Заявка от {self.user} на {self.preferred_datetime}"
 
     class Meta:
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки"
+        ordering = ["-preferred_datetime"]
