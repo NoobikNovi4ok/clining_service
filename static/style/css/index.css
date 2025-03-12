@@ -115,6 +115,9 @@
   .slider-button {
     top: 85% !important;
   }
+  .d-sm-blocki {
+    display: block !important;
+  }
 }
 
 @media (min-width: 576px) {
@@ -140,6 +143,9 @@
     height: 90% !important;
     left: 20%;
     top: 5%;
+  }
+  .d-sm-blocki {
+    display: flex !important;
   }
 }
 

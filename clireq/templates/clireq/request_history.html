@@ -11,41 +11,40 @@
                             <p class="h5 pb-0 text-balance">
                                 Заявка на {{ request.preferred_datetime }}
                                 <br>
-                                услуга
-                                {% if request.service_type %}
-                                    {{ request.get_service_type_display }}
-                                {% else %}
-                                    Иная услуга: {{ request.other_service }}
+                                Статус: {{ request.get_status_display }}
+                                {% if request.status == "cancelled" %}
+                                    <br>
+                                    Причина отмены:
+                                    <p class="fw-bolder text-balance text-danger my-0">{{ request.cancellation_reason }}</p>
                                 {% endif %}
-                            </p>
+                            </div>
+                            <div class="container row py-2">
+                                <strong class="py-1">Адрес:</strong>
+                                <p>{{ request.address }}</p>
+                                <strong class="py-1">Телефон:</strong>
+                                <p>+{{ request.phone }}</p>
+                                <strong class="py-1">Услуга:</strong>
+                                <p>
+                                    {% if request.service_type %}
+                                        {{ request.get_service_type_display }}
+                                    {% else %}
+                                        Иная услуга: {{ request.other_service }}
+                                    {% endif %}
+                                </p>
+                                <strong class="py-1">Дата и время:</strong>
+                                <p>{{ request.preferred_datetime }}</p>
+                                <strong class="py-1">Тип оплаты:</strong>
+                                <p>{{ request.get_payment_method_display }}</p>
+                            </div>
                         </div>
-                        <div class="container row py-2">
-                            <strong class="py-1">Адрес:</strong>
-                            <p>{{ request.address }}</p>
-                            <strong class="py-1">Телефон:</strong>
-                            <p>+{{ request.phone }}</p>
-                            <strong class="py-1">Услуга:</strong>
-                            <p>
-                                {% if request.service_type %}
-                                    {{ request.get_service_type_display }}
-                                {% else %}
-                                    Иная услуга: {{ request.other_service }}
-                                {% endif %}
-                            </p>
-                            <strong class="py-1">Дата и время:</strong>
-                            <p>{{ request.preferred_datetime }}</p>
-                            <strong class="py-1">Тип оплаты:</strong>
-                            <p>{{ request.get_payment_method_display }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>У вас пока нет заявок.</p>
+            {% endif %}
+            <!-- Ссылка на создание новой заявки -->
+            <div class="container text-center mx-auto mt-4">
+                <a href="{% url 'clireq:create_request' %}" class="btn btn-outline-dark">Создать новую заявку</a>
             </div>
-        {% else %}
-            <p>У вас пока нет заявок.</p>
-        {% endif %}
-        <!-- Ссылка на создание новой заявки -->
-        <div class="container text-center mx-auto mt-4">
-            <a href="{% url 'clireq:create_request' %}" class="btn btn-outline-dark">Создать новую заявку</a>
         </div>
-    </div>
-{% endblock content %}
+    {% endblock content %}

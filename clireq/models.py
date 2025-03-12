@@ -3,6 +3,12 @@ from users.models import CustomUser
 
 
 class ServiceRequest(models.Model):
+    STATUS_CHOICES = [
+        ("pending", "В ожидании"),
+        ("in_progress", "Подтверждено"),
+        ("completed", "Выполнено"),
+        ("cancelled", "Отменено"),
+    ]
     SERVICE_CHOICES = [
         ("general_cleaning", "Общий клининг"),
         ("deep_cleaning", "Генеральная уборка"),
@@ -33,6 +39,15 @@ class ServiceRequest(models.Model):
     preferred_datetime = models.DateTimeField(verbose_name="Желаемая дата и время")
     payment_method = models.CharField(
         max_length=4, choices=PAYMENT_CHOICES, verbose_name="Тип оплаты"
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="pending",
+        verbose_name="Статус заявки",
+    )
+    cancellation_reason = models.TextField(
+        blank=True, null=True, verbose_name="Причина отмены"
     )
 
     def __str__(self):
