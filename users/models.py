@@ -101,3 +101,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
         ordering = ["login"]
+        db_table = "Пользователи"
