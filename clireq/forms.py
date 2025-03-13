@@ -88,6 +88,8 @@ class ServiceRequestForm(forms.ModelForm):
         # Проверяем формат номера
         if len(normalized_phone) == 12 and normalized_phone.startswith("+7"):
             return normalized_phone[1:]
+        elif len(normalized_phone) == 12 and normalized_phone.startswith("+8"):
+            return normalized_phone[1:]
         elif len(normalized_phone) == 11 and normalized_phone.startswith("7"):
             return normalized_phone
         elif len(normalized_phone) == 11 and normalized_phone.startswith("8"):
