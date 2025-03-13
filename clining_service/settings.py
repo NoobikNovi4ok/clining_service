@@ -13,9 +13,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-yoarl_-tp#+1lm%t06b$&5vp0js7ku^b5hi1yxyl@m34r+2js%"
 
+SITE_URL = "http://127.0.0.1:8000"
+
+SITE_ID = 1
+
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 INSTALLED_APPS = [
@@ -27,6 +31,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     "bootstrap5",
     "main",
     "users.apps.UsersConfig",

@@ -7,6 +7,8 @@ from django.contrib.auth.models import (
 from django.core.validators import RegexValidator
 import re
 
+from django.urls import reverse
+
 
 class CustomUserManager(BaseUserManager):
     def normalize_phone(self, phone):
