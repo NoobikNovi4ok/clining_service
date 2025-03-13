@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -5,9 +6,6 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.core.validators import RegexValidator
-import re
-
-from django.urls import reverse
 
 
 class CustomUserManager(BaseUserManager):
