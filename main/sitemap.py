@@ -4,7 +4,7 @@ from django.urls import reverse
 
 class StaticViewSitemap(Sitemap):
     """
-    Карта-сайта для статичных страниц
+    Карта-сайта для статичных страниц, само доменное имя задается в админ-панели
     """
 
     protocol = "http"
@@ -12,7 +12,7 @@ class StaticViewSitemap(Sitemap):
     changefreq = "weekly"
 
     def items(self):
-        return ["home"]
+        return ["home", "user:login", "user:register"]
 
     def location(self, item):
         return reverse(item)
