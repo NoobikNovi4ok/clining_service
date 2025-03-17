@@ -4,7 +4,7 @@ from users.models import CustomUser
 
 class ServiceRequest(models.Model):
     STATUS_CHOICES = [
-        ("pending", "В ожидании"),
+        ("pending", "Новая заявка"),
         ("in_progress", "Подтверждено"),
         ("completed", "Выполнено"),
         ("cancelled", "Отменено"),
