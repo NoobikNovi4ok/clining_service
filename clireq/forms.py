@@ -82,15 +82,11 @@ class ServiceRequestForm(forms.ModelForm):
     def clean_phone(self):
         phone = self.cleaned_data.get("phone")
 
-        # Удаляем все символы, кроме цифр и "+"
-        normalized_phone = re.sub(r"[^\d+]", "", phone)
+        # Удаляем все символы, кроме цифр
+        normalized_phone = re.sub(r"[^\d]", "", phone)
 
         # Проверяем формат номера
-        if len(normalized_phone) == 12 and normalized_phone.startswith("+7"):
-            return normalized_phone[1:]
-        elif len(normalized_phone) == 12 and normalized_phone.startswith("+8"):
-            return normalized_phone[1:]
-        elif len(normalized_phone) == 11 and normalized_phone.startswith("7"):
+        if len(normalized_phone) == 11 and normalized_phone.startswith("7"):
             return normalized_phone
         elif len(normalized_phone) == 11 and normalized_phone.startswith("8"):
             return normalized_phone

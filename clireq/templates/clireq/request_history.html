@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load custom_filters %}
 {% block content %}
     <div class="container">
         <p class="h2 mt-2">История ваших заявок</p>
@@ -23,7 +24,7 @@
                             <strong class="py-1">Адрес:</strong>
                             <p>{{ request.address }}</p>
                             <strong class="py-1">Телефон:</strong>
-                            <p>+{{ request.phone }}</p>
+                            <p>{{ request.phone|format_phone }}</p>
                             <strong class="py-1">Услуга:</strong>
                             <p>
                                 {% if request.service_type %}

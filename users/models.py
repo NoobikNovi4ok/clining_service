@@ -16,15 +16,11 @@ class CustomUserManager(BaseUserManager):
         - Приводит номер к формату +7XXXXXXXXXX.
         """
         # Очищаем номер от всех символов, кроме цифр и '+'
-        cleaned_phone = re.sub(r"[^+\d]", "", phone)
+        cleaned_phone = re.sub(r"[^\d]", "", phone)
 
         # Проверяем, начинается ли номер с '+7' или '8'
         if cleaned_phone.startswith("7") or cleaned_phone.startswith("8"):
             normalized_phone = cleaned_phone
-        elif cleaned_phone.startswith("+7"):
-            normalized_phone = cleaned_phone[1:]
-        elif cleaned_phone.startswith("+8"):
-            normalized_phone = cleaned_phone[1:]
         else:
             raise ValueError(
                 "Некорректный формат телефона. Номер должен начинаться с '+7' или '8'."
