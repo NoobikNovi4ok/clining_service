@@ -4,8 +4,8 @@ from users.models import CustomUser
 
 class ServiceRequest(models.Model):
     STATUS_CHOICES = [
-        ("pending", "Новая заявка"),
-        ("in_progress", "Подтверждено"),
+        ("rookie", "Новая заявка"),
+        ("approve", "Подтверждено"),
         ("completed", "Выполнено"),
         ("cancelled", "Отменено"),
     ]
@@ -43,7 +43,7 @@ class ServiceRequest(models.Model):
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default="pending",
+        default="rookie",
         verbose_name="Статус заявки",
     )
     cancellation_reason = models.TextField(
