@@ -299,3 +299,7 @@
 .social-icon:hover .fa-telegram {
   color: #0088cc;
 }
+
+.requests_container{
+  row-gap: 20px;
+}

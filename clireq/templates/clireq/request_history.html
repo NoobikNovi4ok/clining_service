@@ -4,11 +4,11 @@
         <p class="h2 mt-2">История ваших заявок</p>
         <!-- Список заявок -->
         {% if requests %}
-            <div class="row justify-content-evenly pt-3">
+            <div class="row justify-content-evenly pt-3 requests_container">
                 {% for request in requests %}
-                    <div class="col-lg-5 col-xl-5 col-md-8 col-sm-11 col-11 shadow-sm border border-2 {% if request.status == "cancelled" %} border-danger {% elif request.status == "completed"%} border-success {% elif request.status == "approve" %} border-primary {% else %} border-info {% endif %} rounded-2">
+                    <div class="col-lg-5 col-xl-5 col-md-8 col-sm-11 col-11 shadow-sm border border-3 {% if request.status == "cancelled" %} border-danger {% elif request.status == "completed"%} border-success {% elif request.status == "approve" %} border-primary {% else %} border-info {% endif %} rounded-2">
                         <div class="container border-bottom border-2 {% if request.status == "cancelled" %} border-danger {% elif request.status == "completed"%} border-success {% elif request.status == "approve" %} border-primary {% else %} border-info {% endif %} px-auto align-items-center pt-3">
-                            <p class="h5 pb-0 text-balance">
+                            <p class="h5 {% if request.status == "cancelled" %} mb-0 {% else %} pb-2 {% endif %}  text-balance">
                                 Заявка на {{ request.preferred_datetime }}
                                 <br>
                                 Статус: {{ request.get_status_display }}

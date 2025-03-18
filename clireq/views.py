@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.decorators import login_required
@@ -13,13 +14,22 @@ def create_request(request):
             service_request = form.save(commit=False)
             service_request.user = request.user  # Привязываем заявку к пользователю
             service_request.save()
+            messages.success(request, "Успешное создание заявки")
             return redirect("clireq:request_history")
     else:
         form = ServiceRequestForm()
-    return render(request, "clireq/create_request.html", {"form": form})
+    return render(
+        request,
+        "clireq/create_request.html",
+        {"form": form, "title": "Формирование заявки"},
+    )
 
 
 @login_required
 def request_history(request):
     requests = ServiceRequest.objects.filter(user=request.user)
-    return render(request, "clireq/request_history.html", {"requests": requests})
+    return render(
+        request,
+        "clireq/request_history.html",
+        {"requests": requests, "title": "Создание заявки"},
+    )
