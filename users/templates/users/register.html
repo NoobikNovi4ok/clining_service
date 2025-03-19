@@ -14,10 +14,10 @@
                     </div>
                 {% endfor %}
             </div>
-            {% comment %}{% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %} {% endcomment %}
             <div class="container row d-flex flex-wrap pt-2">
                 <button class="btn btn-success w-75 mx-auto" type="submit">Зарегистрироваться</button>
-                <a href="{% url "user:login" %}" class="link-primary link-no-underline pt-2">Авторизоваться</a>
+                <a href="{% url "user:login" %}"
+                   class="link-primary link-no-underline pt-2">Авторизоваться</a>
             </div>
         </form>
     </div>
