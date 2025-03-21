@@ -9,6 +9,7 @@ class ServiceRequestAdmin(admin.ModelAdmin):
             "Основная информация",
             {
                 "fields": (
+                    "id",
                     "user",
                     "address",
                     "phone",
@@ -60,6 +61,7 @@ class ServiceRequestAdmin(admin.ModelAdmin):
         if obj:  # Если объект уже существует (режим редактирования)
             # Делаем все поля, кроме status и cancellation_reason, доступными только для чтения
             return (
+                "id",
                 "user",
                 "address",
                 "phone",
@@ -70,6 +72,19 @@ class ServiceRequestAdmin(admin.ModelAdmin):
             )
         return ()  # При создании объекта все поля доступны для редактирования
 
+        # Поля, которые будут отображаться в списке пользователей
+
+    list_display = (
+        "id",
+        "user",
+        "address",
+        "phone",
+        "service_type",
+        "other_service",
+        "preferred_datetime",
+        "status",
+        "cancellation_reason",
+    )
     list_filter = ("status", "preferred_datetime")
     search_fields = ("user__full_name", "address")
     ordering = ("preferred_datetime",)

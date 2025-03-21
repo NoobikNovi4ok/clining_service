@@ -64,7 +64,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         message="ФИО должно содержать только кириллические символы, пробелы и дефисы.",
     )
 
-    # Поля модели
     login = models.CharField(max_length=50, unique=True, verbose_name="Логин")
     full_name = models.CharField(
         max_length=255, validators=[cyrillic_validator], verbose_name="ФИО"
@@ -75,14 +74,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, verbose_name="Email")
     is_admin = models.BooleanField(default=False, verbose_name="Администратор")
     is_active = models.BooleanField(default=True, verbose_name="Активен")
-    is_staff = models.BooleanField(
-        default=False, verbose_name="Сотрудник"
-    )  # Новое поле
+    is_staff = models.BooleanField(default=False, verbose_name="Сотрудник")
 
-    # Менеджер пользователей
     objects = CustomUserManager()
 
-    # Поле для аутентификации
     USERNAME_FIELD = "login"
     REQUIRED_FIELDS = ["email", "phone", "full_name"]
 

@@ -2,6 +2,7 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import ServiceRequest
+from datetime import datetime
 
 
 class ServiceRequestForm(forms.ModelForm):
@@ -94,6 +95,17 @@ class ServiceRequestForm(forms.ModelForm):
             raise ValidationError(
                 "Неверный формат телефона. Используйте формат: +7(XXX)-XXX-XX-XX."
             )
+
+    def clean_preferred_datetime(self):
+        selected_datetime = self.cleaned_data["preferred_datetime"]
+        # Удаляем временную зону, если она есть
+
+        if selected_datetime and selected_datetime.tzinfo:
+            selected_datetime = selected_datetime.replace(tzinfo=None)
+
+        if selected_datetime < datetime.now():
+            raise forms.ValidationError("Дата и время не могут быть в прошлом.")
+        return selected_datetime
 
     def clean(self):
         cleaned_data = super().clean()

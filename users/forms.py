@@ -55,22 +55,6 @@ class RegistrationForm(forms.ModelForm):
         label="Пароль",
     )
 
-    confirm_password = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control mb-2",
-                "id": "confirm_password",
-                "name": "confirm_password",
-                "placeholder": "Подтвердите пароль",
-                "autocomplete": "new-password",
-            }
-        ),
-        strip=True,
-        min_length=6,
-        required=True,
-        label="Подтверждение пароля",
-    )
-
     phone = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -105,7 +89,6 @@ class RegistrationForm(forms.ModelForm):
             "login",
             "full_name",
             "password",
-            "confirm_password",
             "phone",
             "email",
         ]
@@ -142,14 +125,6 @@ class RegistrationForm(forms.ModelForm):
         if CustomUser.objects.filter(email=email).exists():
             raise ValidationError("Этот email уже зарегистрирован.")
         return email
-
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
-
-        if password and confirm_password and password != confirm_password:
-            raise ValidationError("Пароли не совпадают.")
 
 
 from django.contrib.auth.forms import AuthenticationForm
