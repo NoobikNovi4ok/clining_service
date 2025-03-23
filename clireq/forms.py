@@ -2,7 +2,7 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import ServiceRequest
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class ServiceRequestForm(forms.ModelForm):
@@ -79,6 +79,13 @@ class ServiceRequestForm(forms.ModelForm):
             ("card", "Банковская карта"),
         ]
         self.fields["payment_method"].initial = "cash"  # Начальное значение
+        now = datetime.now()
+        self.fields["preferred_datetime"].widget.attrs.update(
+            {
+                "min": (now + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M"),
+                "max": (now + timedelta(days=7)).strftime("%Y-%m-%dT%H:%M"),
+            }
+        )
 
     def clean_phone(self):
         phone = self.cleaned_data.get("phone")
