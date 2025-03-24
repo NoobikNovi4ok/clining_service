@@ -21,7 +21,14 @@ def register(request):
     else:
         form = RegistrationForm()
     return render(
-        request, "users/register.html", {"form": form, "title": "Регистрация"}
+        request,
+        "users/register.html",
+        {
+            "form": form,
+            "title": "Регистрация",
+            "meta_description": "Зарегистрируйтесь на сайте, чтобы получить доступ к личному кабинету. Укажите логин, ФИО, пароль, номер телефона и email для создания аккаунта.",
+            "meta_keywords": "регистрация, создание аккаунта, личный кабинет, регистрация пользователя, вход на сайт",
+        },
     )
 
 
@@ -43,6 +50,12 @@ class UserLoginView(LoginView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Авторизация"
+        context["meta_description"] = (
+            "Войдите в свой аккаунт, используя логин и пароль. Получите доступ к личному кабинету и управлению заявками."
+        )
+        context["meta_keywords"] = (
+            "авторизация, вход, войти в аккаунт, логин, пароль, личный кабинет"
+        )
         return context
 
 

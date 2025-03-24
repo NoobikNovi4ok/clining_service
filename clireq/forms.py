@@ -83,7 +83,7 @@ class ServiceRequestForm(forms.ModelForm):
         self.fields["preferred_datetime"].widget.attrs.update(
             {
                 "min": (now + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M"),
-                "max": (now + timedelta(days=7)).strftime("%Y-%m-%dT%H:%M"),
+                "max": (now + timedelta(days=31)).strftime("%Y-%m-%dT%H:%M"),
             }
         )
 
