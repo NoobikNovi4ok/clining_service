@@ -96,11 +96,11 @@
                         <p class="text-white fw-bold custom-link mb-1">Админ панель</p>
                     </a>
                 {% endif %}
-                {% comment %} <a class="d-block text-center align-items-center custom-header-link btn btn-outline-danger pb-1"
+                 <a class="d-block text-center align-items-center custom-header-link btn btn-outline-danger pb-1"
                    href="{% url "user:logout" %}">
                     <i class="fa-solid fa-door-open"></i>
                     <p class="text-white fw-bold custom-link mb-1">Выйти</p>
-                </a> {% endcomment %}
+                </a>
             {% else %}
                 <a href="{% url "user:login" %}"
                    class="btn btn-outline-warning btn-custom-users">Авторизоваться</a>
@@ -135,11 +135,11 @@
                     <p class="text-white fw-bold custom-link mb-1">Админ панель</p>
                 </a>
             {% endif %}
-            {% comment %} <a class="nav-item nav-link text-center align-items-center custom-header-link btn btn-outline-danger pb-1"
+            <a class="nav-item nav-link text-center align-items-center custom-header-link btn btn-outline-danger pb-1"
                href="{% url "user:logout" %}">
                 <i class="fa-solid fa-door-open"></i>
                 <p class="text-white fw-bold custom-link mb-1">Выйти</p>
-            </a> {% endcomment %}
+            </a>
         {% else %}
             <a href="{% url "user:login" %}"
                class="btn btn-outline-warning btn-custom-users">Авторизоваться</a>
